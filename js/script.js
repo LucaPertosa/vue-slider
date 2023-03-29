@@ -53,12 +53,18 @@ createApp({
             }
         },
         startAutoscroll() {
-            this.interval = setInterval(this.nextSlide, 3000);
+            if (!this.interval) {
+                this.interval = setInterval(this.nextSlide, 3000);
+            }
         },
         thumbClick(index) {
             this.activeSlide = index;
             clearInterval(this.interval)
             this.startAutoscroll()
+        },
+        stopMouseAutoscroll () {
+            clearInterval(this.interval)
+            this.interval = null;
         },
     }
 }).mount('#app')
